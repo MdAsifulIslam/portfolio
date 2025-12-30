@@ -21,7 +21,7 @@ export default function Portfolio() {
     setFormStatus('sending');
 
     // EmailJS configuration - Replace these with your actual values from emailjs.com
-    const SERVICE_ID = 'your_service_id'; // Get from EmailJS dashboard
+    const SERVICE_ID = 'service_x1nsvfh'; // Your Gmail service ID
     const TEMPLATE_ID = 'your_template_id'; // Create email template in EmailJS
     const PUBLIC_KEY = 'your_public_key'; // Get from EmailJS dashboard
 
