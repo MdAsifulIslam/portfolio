@@ -105,7 +105,7 @@ export default function Portfolio() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="hover:text-cyan-400 transition-colors text-sm lg:text-base"
+                  className="text-cyan-400 transition-colors text-sm lg:text-base"
                 >
                   {item}
                 </button>
