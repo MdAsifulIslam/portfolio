@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Code, Server, Cloud, Database, Award, Briefcase, ChevronDown, Menu, X, ExternalLink } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,30 +20,26 @@ export default function Portfolio() {
 
     setFormStatus('sending');
 
-    const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-    const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
-    
-    const message = `🔔 New Portfolio Contact\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n💬 Message:\n${formData.message}`;
+    // EmailJS configuration - Replace these with your actual values from emailjs.com
+    const SERVICE_ID = 'your_service_id'; // Get from EmailJS dashboard
+    const TEMPLATE_ID = 'your_template_id'; // Create email template in EmailJS
+    const PUBLIC_KEY = 'your_public_key'; // Get from EmailJS dashboard
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      to_email: 'asifulislamshamrat@gmail.com',
+      message: formData.message,
+      reply_to: formData.email,
+    };
 
     try {
-      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'HTML'
-        })
-      });
-
-      if (response.ok) {
-        setFormStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setFormStatus(''), 3000);
-      } else {
-        setFormStatus('error');
-      }
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      setFormStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormStatus(''), 3000);
     } catch (error) {
+      console.error('EmailJS error:', error);
       setFormStatus('error');
     }
   };
