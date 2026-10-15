@@ -22,9 +22,9 @@ export default function Portfolio() {
       return;
     }
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID?.trim();
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID?.trim();
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim();
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID?.trim() || 'service_x1nsvfh';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID?.trim() || 'template_22icpqq';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim() || 'OoqgRcMFpGOv-_qDp';
 
     if (!serviceId || !templateId || !publicKey) {
       console.error('EmailJS is not configured. Set the VITE_EMAILJS_* environment variables.');
