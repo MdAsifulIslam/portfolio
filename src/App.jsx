@@ -13,28 +13,37 @@ export default function Portfolio() {
   };
 
   const handleSubmit = async () => {
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus('error');
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      setFormStatus('validation-error');
+      return;
+    }
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID?.trim() || 'service_x1nsvfh';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID?.trim() || 'template_22icpqq';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim() || 'OoqgRcMFpGOv-_qDp';
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS is not configured. Set the VITE_EMAILJS_* environment variables.');
+      setFormStatus('configuration-error');
       return;
     }
 
     setFormStatus('sending');
 
-    // EmailJS configuration - Replace these with your actual values from emailjs.com
-    const SERVICE_ID = 'service_x1nsvfh'; // Your Gmail service ID
-    const TEMPLATE_ID = 'your_template_id'; // Create email template in EmailJS
-    const PUBLIC_KEY = 'your_public_key'; // Get from EmailJS dashboard
-
     const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
+      from_name: name,
+      from_email: email,
       to_email: 'asifulislamshamrat@gmail.com',
-      message: formData.message,
-      reply_to: formData.email,
+      message,
+      reply_to: email,
     };
 
     try {
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      await emailjs.send(serviceId, templateId, templateParams, { publicKey });
       setFormStatus('success');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setFormStatus(''), 3000);
@@ -343,8 +352,14 @@ export default function Portfolio() {
                 {formStatus === 'success' && (
                   <p className="text-green-400 text-center text-sm sm:text-base">Message sent successfully!</p>
                 )}
+                {formStatus === 'validation-error' && (
+                  <p className="text-red-400 text-center text-sm sm:text-base">Please complete all fields before sending.</p>
+                )}
+                {formStatus === 'configuration-error' && (
+                  <p className="text-red-400 text-center text-sm sm:text-base">The contact form is not configured yet. Please email me directly.</p>
+                )}
                 {formStatus === 'error' && (
-                  <p className="text-red-400 text-center text-sm sm:text-base">Failed to send. Please try again.</p>
+                  <p className="text-red-400 text-center text-sm sm:text-base">Failed to send. Please try again or email me directly.</p>
                 )}
               </div>
             </div>
