@@ -35,11 +35,11 @@ export default function Portfolio() {
     setFormStatus('sending');
 
     const templateParams = {
-      from_name: name,
-      from_email: email,
-      to_email: 'asifulislamshamrat@gmail.com',
+      name,
+      time: new Date().toLocaleString(),
       message,
-      reply_to: email,
+      title: 'Portfolio contact form',
+      email,
     };
 
     try {
