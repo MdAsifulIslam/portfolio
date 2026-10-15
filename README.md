@@ -17,7 +17,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## Contact form setup
 
-The contact form sends messages through EmailJS to the fixed recipient configured in src/App.jsx. Create an EmailJS service and template, then configure these Vite variables locally (copy .env.example to .env) and in Netlify's site environment variables:
+The contact form sends messages through EmailJS to the fixed recipient configured in src/App.jsx. The EmailJS service ID, template ID, and public key are set there as browser-visible defaults; Vite environment variables can optionally override them locally or in Netlify:
 
 - VITE_EMAILJS_SERVICE_ID
 - VITE_EMAILJS_TEMPLATE_ID
