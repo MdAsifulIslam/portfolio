@@ -1,15 +1,3 @@
-# Portfolio site
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
 ## Contact form setup
 
 The contact form sends messages through EmailJS to the fixed recipient configured in src/App.jsx. The EmailJS service ID, template ID, and public key are set there as browser-visible defaults; Vite environment variables can optionally override them locally or in Netlify:
