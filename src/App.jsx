@@ -319,7 +319,7 @@ export default function Portfolio() {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-800 border border-slate-600 rounded-lg focus:outline-none focus:border-cyan-400 transition-colors text-sm sm:text-base"
-                    placeholder="Your name"
+                    placeholder="Your Name"
                   />
                 </div>
                 <div>
@@ -329,7 +329,7 @@ export default function Portfolio() {
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-800 border border-slate-600 rounded-lg focus:outline-none focus:border-cyan-400 transition-colors text-sm sm:text-base"
-                    placeholder="your.email@example.com"
+                    placeholder="Your Email"
                   />
                 </div>
                 <div>
@@ -339,7 +339,7 @@ export default function Portfolio() {
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     rows="4"
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-800 border border-slate-600 rounded-lg focus:outline-none focus:border-cyan-400 transition-colors resize-none text-sm sm:text-base"
-                    placeholder="Your message..."
+                    placeholder="Your message ...."
                   />
                 </div>
                 <button
